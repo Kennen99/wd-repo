@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kemal & Alma - Wedding Invitation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4efe6;
+    font-family: 'Montserrat', sans-serif;
+    color: #5c5346;
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 60px 40px;
+    background-color: #f8f1e7;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* Floral Border */
+.container::before,
+.container::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    border: 3px solid #6f8b74;
+    box-sizing: border-box;
+}
+
+/* Decorative Flowers */
+.flower {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border: 3px solid #6f8b74;
+    border-radius: 50%;
+    background: rgba(244, 239, 230, 0.6);
+}
+
+.flower.top-left {
+    top: -60px;
+    left: -60px;
+}
+
+.flower.top-right {
+    top: -60px;
+    right: -60px;
+}
+
+.flower.bottom-left {
+    bottom: -60px;
+    left: -60px;
+}
+
+.flower.bottom-right {
+    bottom: -60px;
+    right: -60px;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.date {
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+}
+
+.section {
+    margin: 40px 0;
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.details {
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.footer {
+    margin-top: 60px;
+    font-style: italic;
+    font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="flower top-left"></div>
+    <div class="flower top-right"></div>
+    <div class="flower bottom-left"></div>
+    <div class="flower bottom-right"></div>
+
+    <center>
+        <h1>Kemal & Alma</h1>
+        <div class="date">15th August</div>
+        <div class="details">
+            Request the honour of your presence<br>
+            at the celebration of their marriage
+        </div>
+
+        <div class="section">
+            <h2>Wedding Ceremony</h2>
+            <div class="details">
+                18:00<br>
+                Hotel Austria<br>
+                Sarajevo
+            </div>
+        </div>
+
+        <div class="footer">
+            We look forward to celebrating this special day with you.
+        </div>
+    </center>
+</div>
+
+</body>
+</html>
