@@ -104,6 +104,9 @@ max-width:900px;
 margin:40px auto;
 border-radius:8px;
 box-shadow:0 10px 25px rgba(0,0,0,0.1);
+opacity:0;
+animation:fadeUp 1.5s ease forwards;
+animation-delay:2s;
 }
 
 /* Animation */
@@ -146,7 +149,25 @@ margin:30px 20px;
 }
 
 }
+.fade{
+opacity:0;
+transform:translateY(20px);
+animation:fadeUp 1.2s ease forwards;
+}
 
+.fade:nth-child(1){animation-delay:0.2s;}
+.fade:nth-child(2){animation-delay:0.6s;}
+.fade:nth-child(3){animation-delay:1s;}
+.fade:nth-child(4){animation-delay:1.4s;}
+.fade:nth-child(5){animation-delay:1.8s;}
+
+@keyframes fadeUp{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+   
 </style>
 </head>
 
@@ -156,44 +177,81 @@ margin:30px 20px;
 
 <!-- SVG Flower Corners -->
 
-<img class="flower top-left" src="https://www.svgrepo.com/show/530437/floral.svg">
-<img class="flower top-right" src="https://www.svgrepo.com/show/530437/floral.svg">
-<img class="flower bottom-left" src="https://www.svgrepo.com/show/530437/floral.svg">
-<img class="flower bottom-right" src="https://www.svgrepo.com/show/530437/floral.svg">
+<div class="flower top-left">
+<svg viewBox="0 0 200 200">
+<path fill="#6f8b74" opacity="0.35"
+d="M100 10c20 30 40 40 60 50s20 40 0 60-40 20-60 50c-20-30-40-40-60-50s-20-40 0-60 40-20 60-50z"/>
+</svg>
+</div>
+
+<div class="flower top-right">
+<svg viewBox="0 0 200 200">
+<path fill="#6f8b74" opacity="0.35"
+d="M100 10c20 30 40 40 60 50s20 40 0 60-40 20-60 50c-20-30-40-40-60-50s-20-40 0-60 40-20 60-50z"/>
+</svg>
+</div>
+
+<div class="flower bottom-left">
+<svg viewBox="0 0 200 200">
+<path fill="#6f8b74" opacity="0.35"
+d="M100 10c20 30 40 40 60 50s20 40 0 60-40 20-60 50c-20-30-40-40-60-50s-20-40 0-60 40-20 60-50z"/>
+</svg>
+</div>
+
+<div class="flower bottom-right">
+<svg viewBox="0 0 200 200">
+<path fill="#6f8b74" opacity="0.35"
+d="M100 10c20 30 40 40 60 50s20 40 0 60-40 20-60 50c-20-30-40-40-60-50s-20-40 0-60 40-20 60-50z"/>
+</svg>
+</div>
 
 <center>
 
-<div class="header">
+<<div class="fade header">
 Pridružite nam se na ovaj specijalan dan
 </div>
 
+<div class="fade">
 <h1>Kenan & Almedina</h1>
+</div>
 
-<div class="date">Subota, 15.08.2026.</div>
+<div class="fade date">
+Subota, 15.08.2026.
+</div>
 
-<div class="countdown" id="countdown"></div>
+<div class="fade countdown" id="countdown"></div>
 
-<div class="section">
-
+<div class="fade section">
 <h2>Wedding Ceremony</h2>
 
-<div class="details">
-Hotel Austria Bosnia, Ilidža<br>
-18:00
-</div>
+<!-- Map -->
+<div class="fade" id="map"></div>
 
-</div>
+<div class="container fade">
+
+<center>
 
 <div class="footer">
 Molimo vas da nas obavjestite o mogućnosti prisustvovanja do 30.6.2026.
 </div>
 
+<br><br>
+
+<img src="placeholder.jpg" style="max-width:100%; border-radius:8px;">
+
 </center>
 
 </div>
 
-<!-- Map -->
-<div id="map"></div>
+<div class="details">
+Hotel Austria Bosnia, Ilidža<br>
+18:00
+</div>
+</div>
+
+</center>
+
+</div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
