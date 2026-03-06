@@ -180,33 +180,36 @@ z-index:9999;
 
 .envelope{
 position:relative;
-width:320px;
-height:200px;
-cursor:pointer;
+width:90vw;
+height:85vh;
+max-width:900px;
+background:#6f6e50;
+border-radius:6px;
+box-shadow:0 25px 60px rgba(0,0,0,0.25);
+overflow:hidden;
 }
+
+/* Envelope Body */
 
 .envelope-body{
 position:absolute;
 width:100%;
 height:100%;
 background:#6f6e50;
-border-radius:6px;
-box-shadow:0 10px 25px rgba(0,0,0,0.15);
 }
 
-/* Envelope lid */
+/* Envelope Lid */
 
 .envelope-lid{
 position:absolute;
 top:0;
 left:0;
 width:100%;
-height:100%;
+height:50%;
 background:#5e5d43;
-clip-path:polygon(0 0, 50% 60%, 100% 0);
+clip-path:polygon(0 0, 50% 100%, 100% 0);
 transform-origin:top;
-transition:transform 1s ease;
-border-radius:6px;
+transition:transform 1.2s ease;
 }
 
 /* Open animation */
@@ -215,16 +218,40 @@ border-radius:6px;
 transform:rotateX(180deg);
 }
 
-/* Text */
+/* Wax Seal */
 
-.invite-text{
+.wax-seal{
 position:absolute;
-width:100%;
-text-align:center;
-top:75px;
-font-family:'Playfair Display', serif;
-font-size:20px;
-color:#f4efe6;
+top:50%;
+left:50%;
+transform:translate(-50%, -50%);
+width:110px;
+height:110px;
+border-radius:50%;
+
+background:radial-gradient(circle at 30% 30%, #f7e08a, #caa53a, #9f7c22);
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-family:'Playfair Display',serif;
+font-size:16px;
+letter-spacing:2px;
+
+color:#5c5346;
+
+box-shadow:
+0 6px 10px rgba(0,0,0,0.3),
+inset 0 3px 5px rgba(255,255,255,0.4),
+inset 0 -4px 6px rgba(0,0,0,0.25);
+
+cursor:pointer;
+transition:transform 0.2s ease;
+}
+
+.wax-seal:hover{
+transform:translate(-50%, -50%) scale(1.05);
 }
 
 /* Hide invitation initially */
@@ -243,8 +270,8 @@ display:none;
     <div class="envelope-lid"></div>
     <div class="envelope-body"></div>
     
-    <div class="invite-text">
-      Click to Open Invitation
+    <div class="wax-seal" onclick="openEnvelope()">
+      OPEN
     </div>
   </div>
 </div>
