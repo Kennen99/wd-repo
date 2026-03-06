@@ -161,11 +161,95 @@ margin:30px 20px;
 
 }
 
+/* Envelope Wrapper */
+
+#envelopeWrapper{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#f4efe6;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+
+/* Envelope */
+
+.envelope{
+position:relative;
+width:320px;
+height:200px;
+cursor:pointer;
+}
+
+.envelope-body{
+position:absolute;
+width:100%;
+height:100%;
+background:#e6d8c3;
+border-radius:6px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Envelope lid */
+
+.envelope-lid{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#d8c7ae;
+clip-path:polygon(0 0, 50% 60%, 100% 0);
+transform-origin:top;
+transition:transform 1s ease;
+border-radius:6px;
+}
+
+/* Open animation */
+
+.envelope.open .envelope-lid{
+transform:rotateX(180deg);
+}
+
+/* Text */
+
+.invite-text{
+position:absolute;
+width:100%;
+text-align:center;
+top:75px;
+font-family:'Playfair Display', serif;
+font-size:20px;
+color:#5c5346;
+}
+
+/* Hide invitation initially */
+
+.hidden{
+display:none;
+}
+
 </style>
 </head>
 
 <body>
 
+<div id="envelopeWrapper">
+  <div class="envelope" onclick="openEnvelope()">
+    <div class="envelope-lid"></div>
+    <div class="envelope-body"></div>
+    
+    <div class="invite-text">
+      Click to Open Invitation
+    </div>
+  </div>
+</div>
+
+<div id="invitation" class="hidden">
 <div class="container">
 
 <!-- Floral Corners -->
@@ -289,7 +373,22 @@ L.marker([venueLat, venueLng])
 .bindPopup('<b>Wedding Location</b><br><a target="_blank" href="https://maps.google.com/?q=43.82993,18.30713">Open in Google Maps</a>')
 .openPopup();
 
-</script>
+function openEnvelope(){
 
+const envelope = document.querySelector(".envelope");
+
+envelope.classList.add("open");
+
+setTimeout(() => {
+
+document.getElementById("envelopeWrapper").style.display = "none";
+document.getElementById("invitation").classList.remove("hidden");
+
+},1000);
+
+}
+
+</script>
+</div>
 </body>
 </html>
