@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="bs">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,110 +8,157 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
 <style>
 
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #f4efe6;
-    font-family: 'Montserrat', sans-serif;
-    color: #5c5346;
+body{
+margin:0;
+padding:0;
+background:#f4efe6;
+font-family:'Montserrat',sans-serif;
+color:#5c5346;
 }
 
-/* Invitation card */
+/* Container */
 
-.container {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 80px 60px;
-    background-color: #f8f1e7;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+.container{
+max-width:900px;
+margin:40px auto;
+padding:60px 40px;
+background:#f8f1e7;
+position:relative;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+overflow:hidden;
 }
 
-/* border */
+/* Floral corners */
 
-.container::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border: 3px solid #6f8b74;
-    pointer-events: none;
+.flower{
+position:absolute;
+width:160px;
+height:160px;
 }
 
-/* corner svg decorations */
-
-.corner{
-    position:absolute;
-    width:170px;
-    height:auto;
-    pointer-events:none;
-    opacity:0.95;
+.flower svg{
+width:100%;
+height:100%;
 }
 
-/* positions */
+.top-left{top:-30px;left:-30px;}
+.top-right{top:-30px;right:-30px;transform:scaleX(-1);}
+.bottom-left{bottom:-30px;left:-30px;transform:scaleY(-1);}
+.bottom-right{bottom:-30px;right:-30px;transform:scale(-1);}
 
-.top-left{
-    top:-25px;
-    left:-25px;
-}
-
-.top-right{
-    top:-25px;
-    right:-25px;
-}
-
-.bottom-left{
-    bottom:-25px;
-    left:-25px;
-}
-
-.bottom-right{
-    bottom:-25px;
-    right:-25px;
-}
-
-/* text styles */
+/* Typography */
 
 .header{
-    margin-top:30px;
-    font-style:italic;
-    font-size:18px;
+margin-top:40px;
+font-style:italic;
+font-size:16px;
 }
 
 h1{
-    font-family:'Playfair Display',serif;
-    font-size:56px;
-    font-weight:600;
-    margin:15px 0;
+font-family:'Playfair Display',serif;
+font-size:56px;
+margin-bottom:10px;
 }
 
 .date{
-    font-size:20px;
-    letter-spacing:2px;
-    margin-bottom:50px;
+font-size:20px;
+letter-spacing:2px;
+margin-bottom:20px;
 }
 
 .section{
-    margin:40px 0;
-    font-style:italic;
+margin:40px 0;
+font-style:italic;
 }
 
 h2{
-    font-family:'Playfair Display',serif;
-    font-size:28px;
-    margin-bottom:15px;
+font-family:'Playfair Display',serif;
+font-size:28px;
+margin-bottom:15px;
 }
 
 .details{
-    font-size:18px;
-    line-height:1.8;
+font-size:18px;
+line-height:1.8;
 }
 
 .footer{
-    margin-top:60px;
-    font-style:italic;
-    font-size:16px;
+margin-top:50px;
+font-style:italic;
+font-size:16px;
+}
+
+.countdown{
+font-size:20px;
+letter-spacing:2px;
+margin-top:10px;
+}
+
+/* Fade animation */
+
+.fade{
+opacity:0;
+transform:translateY(20px);
+animation:fadeUp 1.2s ease forwards;
+}
+
+.fade:nth-child(1){animation-delay:0.2s;}
+.fade:nth-child(2){animation-delay:0.5s;}
+.fade:nth-child(3){animation-delay:0.8s;}
+.fade:nth-child(4){animation-delay:1.1s;}
+.fade:nth-child(5){animation-delay:1.4s;}
+
+@keyframes fadeUp{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* Map */
+
+#map{
+height:400px;
+max-width:900px;
+margin:40px auto;
+border-radius:8px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+opacity:0;
+animation:fadeUp 1.5s ease forwards;
+animation-delay:1.6s;
+}
+
+/* Mobile */
+
+@media (max-width:600px){
+
+.container{
+padding:40px 20px;
+margin:20px;
+}
+
+h1{
+font-size:40px;
+}
+
+.details{
+font-size:16px;
+}
+
+.flower{
+width:110px;
+height:110px;
+}
+
+#map{
+height:300px;
+margin:30px 20px;
+}
+
 }
 
 </style>
@@ -121,28 +168,54 @@ h2{
 
 <div class="container">
 
-<!-- SVG CORNERS -->
+<!-- Floral Corners -->
 
-<img src="top-left.svg" class="corner top-left">
-<img src="top-right.svg" class="corner top-right">
-<img src="bottom-left.svg" class="corner bottom-left">
-<img src="bottom-right.svg" class="corner bottom-right">
+<div class="flower top-left">
+<svg viewBox="0 0 200 200">
+<path fill="#6f8b74" opacity="0.35"
+d="M100 10c20 30 40 40 60 50s20 40 0 60-40 20-60 50c-20-30-40-40-60-50s-20-40 0-60 40-20 60-50z"/>
+</svg>
+</div>
+
+<div class="flower top-right">
+<svg viewBox="0 0 200 200">
+<path fill="#6f8b74" opacity="0.35"
+d="M100 10c20 30 40 40 60 50s20 40 0 60-40 20-60 50c-20-30-40-40-60-50s-20-40 0-60 40-20 60-50z"/>
+</svg>
+</div>
+
+<div class="flower bottom-left">
+<svg viewBox="0 0 200 200">
+<path fill="#6f8b74" opacity="0.35"
+d="M100 10c20 30 40 40 60 50s20 40 0 60-40 20-60 50c-20-30-40-40-60-50s-20-40 0-60 40-20 60-50z"/>
+</svg>
+</div>
+
+<div class="flower bottom-right">
+<svg viewBox="0 0 200 200">
+<path fill="#6f8b74" opacity="0.35"
+d="M100 10c20 30 40 40 60 50s20 40 0 60-40 20-60 50c-20-30-40-40-60-50s-20-40 0-60 40-20 60-50z"/>
+</svg>
+</div>
 
 <center>
 
-<div class="header">
+<div class="fade header">
 Pridružite nam se na ovaj specijalan dan
 </div>
 
+<div class="fade">
 <h1>Kenan & Almedina</h1>
+</div>
 
-<div class="date">
+<div class="fade date">
 Subota, 15.08.2026.
 </div>
 
-<div class="section">
+<div class="fade countdown" id="countdown"></div>
 
-<h2>Svečano vjenčanje</h2>
+<div class="fade section">
+<h2>Wedding Ceremony</h2>
 
 <div class="details">
 Hotel Austria Bosnia, Ilidža<br>
@@ -151,13 +224,72 @@ Hotel Austria Bosnia, Ilidža<br>
 
 </div>
 
-<div class="footer">
-Molimo vas da nas obavijestite o mogućnosti prisustvovanja do 31.06.2026.
+</center>
+
 </div>
+
+<!-- Map -->
+
+<div id="map"></div>
+
+<!-- RSVP + Image -->
+
+<div class="container fade">
+
+<center>
+
+<div class="footer">
+Molimo vas da nas obavjestite o mogućnosti prisustvovanja do 30.6.2026.
+</div>
+
+<br><br>
+
+<img src="placeholder.jpg" style="max-width:100%; border-radius:8px;">
 
 </center>
 
 </div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+/* Countdown */
+
+const weddingDate = new Date("Aug 15, 2026 18:00:00").getTime();
+
+setInterval(function(){
+
+const now = new Date().getTime();
+const distance = weddingDate - now;
+
+const days = Math.floor(distance/(1000*60*60*24));
+const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+
+document.getElementById("countdown").innerHTML =
+days+" days "+hours+" hours "+minutes+" minutes";
+
+},1000);
+
+
+/* Map */
+
+const venueLat = 43.82993;
+const venueLng = 18.30713;
+
+const map = L.map('map').setView([venueLat, venueLng], 15);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+maxZoom:19,
+}).addTo(map);
+
+L.marker([venueLat, venueLng])
+.addTo(map)
+.bindPopup('<b>Wedding Location</b><br><a target="_blank" href="https://maps.google.com/?q=43.82993,18.30713">Open in Google Maps</a>')
+.openPopup();
+
+</script>
 
 </body>
 </html>
