@@ -15,7 +15,7 @@
 body{
 margin:0;
 padding:0;
-background:#f4efe6;
+background:#e8dfcf;
 font-family:'Montserrat',sans-serif;
 color:#5c5346;
 }
@@ -26,7 +26,7 @@ color:#5c5346;
 max-width:900px;
 margin:40px auto;
 padding:60px 40px;
-background:#f8f1e7;
+background:#efe5d3;
 position:relative;
 box-shadow:0 10px 30px rgba(0,0,0,0.08);
 overflow:hidden;
@@ -34,26 +34,46 @@ overflow:hidden;
 
 /* Floral corners */
 
-.flower{
-position:absolute;
-width:160px;
-height:160px;
+.corner {
+    position: absolute;
+    width: 160px;
+    height: auto;
+    pointer-events: none;
+    color:#6f8b74;
+    opacity:0.85;
+    filter: invert(45%) sepia(10%) saturate(500%) hue-rotate(80deg);
+
 }
 
-.flower svg{
-width:100%;
-height:100%;
+/* positioning */
+
+.top-left {
+    top: -30px;
+    left: -30px;
 }
 
-.top-left{top:-30px;left:-30px;}
-.top-right{top:-30px;right:-30px;transform:scaleX(-1);}
-.bottom-left{bottom:-30px;left:-30px;transform:scaleY(-1);}
-.bottom-right{bottom:-30px;right:-30px;transform:scale(-1);}
+.top-right {
+    top: -30px;
+    right: -30px;
+}
+
+.bottom-left {
+    width: 50%;
+    height: 50%;
+}
+
+.bottom-right {
+    width: 50%;
+    height: 50%;
+}
+
+.bottom-left{bottom:0px;left:-38px;}
+.bottom-right{bottom:0px;right:-38px;transform:scaleX(-1);}
 
 /* Typography */
 
 .header{
-margin-top:40px;
+margin-top:50x;
 font-style:italic;
 font-size:16px;
 }
@@ -89,14 +109,9 @@ line-height:1.8;
 .footer{
 margin-top:50px;
 font-style:italic;
-font-size:16px;
+font-size:14px;
 }
 
-.countdown{
-font-size:20px;
-letter-spacing:2px;
-margin-top:10px;
-}
 
 /* Fade animation */
 
@@ -142,16 +157,11 @@ margin:20px;
 }
 
 h1{
-font-size:40px;
+font-size:48px;
 }
 
 .details{
 font-size:16px;
-}
-
-.flower{
-width:110px;
-height:110px;
 }
 
 #map{
@@ -180,37 +190,69 @@ z-index:9999;
 
 .envelope{
 position:relative;
-width:90vw;
-height:85vh;
-max-width:900px;
-background:#6f6e50;
-border-radius:6px;
-box-shadow:0 25px 60px rgba(0,0,0,0.25);
-overflow:hidden;
+width:320px;
+height:200px;
+cursor:pointer;
+width:100vw;
+height:37vh;
 }
-
-/* Envelope Body */
 
 .envelope-body{
 position:absolute;
 width:100%;
 height:100%;
-background:#6f6e50;
+background:
+linear-gradient(to bottom, rgba(255,255,255,0.06), transparent 40%),
+#6f6e50;
+border-radius:6px;
+box-shadow:0 12px 25px rgba(0,0,0,0.25);
+background:linear-gradient(
+    145deg,
+    #6f6e50,
+    #6f6e50
+  );
 }
 
-/* Envelope Lid */
+/* Envelope lid */
 
 .envelope-lid{
 position:absolute;
 top:0;
 left:0;
 width:100%;
-height:50%;
+height:75%;
 background:#5e5d43;
-clip-path:polygon(0 0, 50% 100%, 100% 0);
+clip-path:polygon(0 0, 50% 40%, 100% 0);
 transform-origin:top;
-transition:transform 1.2s ease;
+transition:transform 2s ease;
+border-radius:6px;
+box-shadow:0 5px 10px rgba(0,0,0,0.1);
 }
+
+/* bottom triangle fold */
+.envelope-body::before{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:50%;
+  background:rgba(255,255,255,0.06);
+  clip-path:polygon(0 100%, 50% 0, 100% 100%);
+}
+
+/* top triangle fold */
+.envelope-body::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:50%;
+  background:rgba(0,0,0,0.05);
+  clip-path:polygon(0 0, 50% 100%, 100% 0);
+}
+
 
 /* Open animation */
 
@@ -218,40 +260,24 @@ transition:transform 1.2s ease;
 transform:rotateX(180deg);
 }
 
-/* Wax Seal */
+/* Text */
 
-.wax-seal{
+.invite-text{
 position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%, -50%);
-width:110px;
-height:110px;
-border-radius:50%;
-
-background:radial-gradient(circle at 30% 30%, #f7e08a, #caa53a, #9f7c22);
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-font-family:'Playfair Display',serif;
-font-size:16px;
-letter-spacing:2px;
-
-color:#5c5346;
-
-box-shadow:
-0 6px 10px rgba(0,0,0,0.3),
-inset 0 3px 5px rgba(255,255,255,0.4),
-inset 0 -4px 6px rgba(0,0,0,0.25);
-
-cursor:pointer;
-transition:transform 0.2s ease;
+width:100%;
+text-align:center;
+top:50px;
+font-family:'Playfair Display', serif;
+font-size:20px;
+color:#f4efe6;
 }
 
-.wax-seal:hover{
-transform:translate(-50%, -50%) scale(1.05);
+.invite-icon{
+  display:block;
+  width:35%;
+  margin:50px auto 0;
+  animation: bounce 1.5s infinite;
+  
 }
 
 /* Hide invitation initially */
@@ -270,152 +296,110 @@ display:none;
     <div class="envelope-lid"></div>
     <div class="envelope-body"></div>
     
-    <div class="wax-seal" onclick="openEnvelope()">
-      OPEN
+    <div class="invite-text">
+       Otvori
+      <img src="pecat.svg" class="invite-icon">
     </div>
   </div>
 </div>
 
 <div id="invitation" class="hidden">
-<div class="container">
+    <div class="container">
 
-<!-- Floral Corners -->
+        <!-- Floral Corners -->
+        <img src="bottom-left.svg" class="corner bottom-left">
+        <img src="bottom-left.svg" class="corner bottom-right">
 
-<div class="flower top-left">
-<svg viewBox="0 0 200 200">
-<path fill="#6f8b74" opacity="0.35"
-d="M100 10c20 30 40 40 60 50s20 40 0 60-40 20-60 50c-20-30-40-40-60-50s-20-40 0-60 40-20 60-50z"/>
-</svg>
-</div>
+        <center>
 
-<div class="flower top-right">
-<svg viewBox="0 0 200 200">
-<path fill="#6f8b74" opacity="0.35"
-d="M100 10c20 30 40 40 60 50s20 40 0 60-40 20-60 50c-20-30-40-40-60-50s-20-40 0-60 40-20 60-50z"/>
-</svg>
-</div>
+            <div class="fade">
+                <h1>K | A</h1><br/><br/>
+            </div>
 
-<div class="flower bottom-left">
-<svg viewBox="0 0 200 200">
-<path fill="#6f8b74" opacity="0.35"
-d="M100 10c20 30 40 40 60 50s20 40 0 60-40 20-60 50c-20-30-40-40-60-50s-20-40 0-60 40-20 60-50z"/>
-</svg>
-</div>
+            <div class="fade header">
+                Pridružite nam se na ovaj specijalan dan<br/><br/><br/>
+            </div>
 
-<div class="flower bottom-right">
-<svg viewBox="0 0 200 200">
-<path fill="#6f8b74" opacity="0.35"
-d="M100 10c20 30 40 40 60 50s20 40 0 60-40 20-60 50c-20-30-40-40-60-50s-20-40 0-60 40-20 60-50z"/>
-</svg>
-</div>
+            <div class="fade">
+                <h2>Kenan & <br/>Almedina</h2><br/><br/><br/><br/><br/><br/>
+            </div>
+            
 
-<center>
+        </center>
 
-<div class="fade header">
-Pridružite nam se na ovaj specijalan dan
-</div>
+    </div>
 
-<div class="fade">
-<h1>Kenan & Almedina</h1>
-</div>
+    <div class="container">
 
-<div class="fade date">
-Subota, 15.08.2026.
-</div>
+        <img src="bottom-left.svg" class="corner bottom-left">
+        <img src="bottom-left.svg" class="corner bottom-right">
 
-<div class="fade countdown" id="countdown"></div>
+        <center>
+            <div class="fade section">
+                <div class="details">
+                    <h2>Hotel Austria Bosnia, Ilidža</h2><br/>
+                </div>
+            </div>
 
-<div class="fade section">
-<h2>Wedding Ceremony</h2>
+            <div class="fade date">
+                <h2>Subota, 15.08.2026.</h2>
+            </div>
 
-<div class="details">
-Hotel Austria Bosnia, Ilidža<br>
-18:00
-</div>
+            <div class="fade section">
+                <div class="details">
+                    <h2>17:30h</h2><br/><br/><br/><br/>
+                </div>
+            </div>
 
-</div>
+            <div class="footer">
+                <h3>Molimo vas da nas obavjestite o mogućnosti prisustvovanja do 30.5.2026.</h3>
+            </div>
 
-</center>
+        </center>
+    </div>
+
+    <!-- Map -->
+
+    <div id="map"></div>
 
 </div>
-
-<!-- Map -->
-
-<div id="map"></div>
-
-<!-- RSVP + Image -->
-
-<div class="container fade">
-
-<center>
-
-<div class="footer">
-Molimo vas da nas obavjestite o mogućnosti prisustvovanja do 30.6.2026.
-</div>
-
-<br><br>
-
-<img src="placeholder.jpg" style="max-width:100%; border-radius:8px;">
-
-</center>
-
-</div>
-
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
 
-/* Countdown */
-
-const weddingDate = new Date("Aug 15, 2026 18:00:00").getTime();
-
-setInterval(function(){
-
-const now = new Date().getTime();
-const distance = weddingDate - now;
-
-const days = Math.floor(distance/(1000*60*60*24));
-const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
-
-document.getElementById("countdown").innerHTML =
-days+" days "+hours+" hours "+minutes+" minutes";
-
-},1000);
-
-
 /* Map */
 
-const venueLat = 43.82993;
-const venueLng = 18.30713;
-
-const map = L.map('map').setView([venueLat, venueLng], 15);
-
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-maxZoom:19,
-}).addTo(map);
-
-L.marker([venueLat, venueLng])
-.addTo(map)
-.bindPopup('<b>Wedding Location</b><br><a target="_blank" href="https://maps.google.com/?q=43.82993,18.30713">Open in Google Maps</a>')
-.openPopup();
+const venueLat = 43.8260952;
+const venueLng = 18.305616;
 
 function openEnvelope(){
+    const envelope = document.querySelector(".envelope");
 
-const envelope = document.querySelector(".envelope");
+    envelope.classList.add("open");
 
-envelope.classList.add("open");
+    setTimeout(() => {
 
-setTimeout(() => {
+        document.getElementById("envelopeWrapper").style.display = "none";
+        const invitation = document.getElementById("invitation");
+        invitation.classList.remove("hidden");
 
-document.getElementById("envelopeWrapper").style.display = "none";
-document.getElementById("invitation").classList.remove("hidden");
+        // Fix Leaflet map rendering
+        const map = L.map('map').setView([venueLat, venueLng], 18);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+            maxZoom:19,
+        }).addTo(map);
 
-},1000);
+        L.marker([venueLat, venueLng])
+        .addTo(map)
+        .bindPopup('<b>Wedding Location</b><br><a target="_blank" href="https://maps.google.com/?q=43.8260952,18.305616">Open in Google Maps</a>')
+        .openPopup();
 
+        map.invalidateSize(); // force Leaflet to render properly
+
+    },2000);
 }
 
 </script>
-</div>
+
 </body>
 </html>
