@@ -46,17 +46,6 @@ overflow:hidden;
 }
 
 /* positioning */
-
-.top-left {
-    top: -30px;
-    left: -30px;
-}
-
-.top-right {
-    top: -30px;
-    right: -30px;
-}
-
 .bottom-left {
     width: 50%;
     height: 50%;
@@ -273,7 +262,10 @@ color:#f4efe6;
 }
 
 .invite-icon{
-  display:block;
+  position:absolute;
+  left:50%;
+  top:70%;
+  transform:translate(-50%, -50%);
   width:35%;
   margin:50px auto 0;
   animation: bounce 1.5s infinite;
