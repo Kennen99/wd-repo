@@ -253,6 +253,7 @@ transform:rotateX(180deg);
 
 .invite-text{
 position:absolute;
+left:50%;
 width:20%;
 top:0px;
 }
@@ -264,7 +265,11 @@ top:0px;
   transform:translate(-50%, -50%);
   width:35%;
   animation: bounce 1.5s infinite;
-  
+  transition: opacity 0.6s ease; /* fade animation */
+}
+
+.invite-icon.fade-out{
+  opacity:0;
 }
 
 /* Hide invitation initially */
@@ -322,7 +327,7 @@ display:none;
         <center>
             <div class="fade section">
                 <div class="details">
-                    <h2>Hotel Austria Bosnia, Ilidža</h2><br/>
+                    <h2>Hotel Austria Bosna, Ilidža</h2><br/>
                 </div>
             </div>
 
@@ -359,7 +364,9 @@ const venueLng = 18.305616;
 
 function openEnvelope(){
     const envelope = document.querySelector(".envelope");
+    const icon = document.querySelector(".invite-icon");
 
+    icon.classList.add("fade-out"); // fade the seal
     envelope.classList.add("open");
 
     setTimeout(() => {
