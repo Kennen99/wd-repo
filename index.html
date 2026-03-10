@@ -256,7 +256,12 @@ position:absolute;
 top: 10%;
 left:50%;
 transform:translate(-50%, -50%);
-width:30%;;
+width:20%;
+transition: opacity 0.6s ease; /* fade animation */
+}
+
+.invite-text.fade-out{
+  opacity:0;
 }
 
 .invite-icon{
@@ -366,6 +371,7 @@ const venueLng = 18.305616;
 function openEnvelope(){
     const envelope = document.querySelector(".envelope");
     const icon = document.querySelector(".invite-icon");
+    const icon = document.querySelector(".invite-text");
 
     icon.classList.add("fade-out"); // fade the seal
     envelope.classList.add("open");
