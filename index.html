@@ -371,9 +371,11 @@ const venueLng = 18.305616;
 function openEnvelope(){
     const envelope = document.querySelector(".envelope");
     const icon = document.querySelector(".invite-icon");
-    const icon = document.querySelector(".invite-text");
+    const text = document.querySelector(".invite-text");
 
     icon.classList.add("fade-out"); // fade the seal
+    text.classList.add("fade-out"); // fade the seal
+
     envelope.classList.add("open");
 
     setTimeout(() => {
